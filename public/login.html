@@ -1,35 +1,105 @@
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-</head>
-<body>
-  <h1>Login</h1>
-  <form id="loginForm">
-    <input type="text" id="username" name="username" placeholder="Username" required>
-    <input type="password" id="password" name="password" placeholder="Password" required>
-    <button type="submit">Login</button>
-  </form>
+<html lang="en" class="form-screen">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login - Admin One Tailwind CSS Admin Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css"
+    />
+    <!-- Tailwind is included -->
+    <link rel="stylesheet" href="css/main.css?v=1652870200386" />
+  </head>
+  <body>
+    <div id="app">
+      <section class="section main-section">
+        <div class="card">
+          <header class="card-header">
+            <p class="card-header-title">
+              <span class="icon"><i class="mdi mdi-lock"></i></span>
+              Login
+            </p>
+          </header>
+          <div class="card-content">
+            <form method="get" id="loginForm">
 
-  <script>
-    document.getElementById('loginForm').addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(document.getElementById('loginForm'));
-      
-      const response = await fetch('/login', {
-        method: 'POST',
-        body: new URLSearchParams(formData)
-      });
+              <div class="field spaced">
+                <label class="label">Login</label>
+                <div class="control icons-left">
+                  <input
+                    type="text"
+                    class="input"
+                    id="username"
+                    name="username"
+                    placeholder="Username"
+                    required
+                  />
+                  <span class="icon is-small left"
+                    ><i class="mdi mdi-account"></i
+                  ></span>
+                </div>
+                <p class="help">Please enter your login</p>
+              </div>
 
-      if (response.redirected) {
-        window.location.href = response.url;
-      } else {
-        alert('Login failed');
-      }
-    });
-  </script>
-</body>
+              <div class="field spaced">
+                <label class="label">Password</label>
+                <p class="control icons-left">
+                  <input
+                    class="input"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    autocomplete="current-password"
+                  />
+                  <span class="icon is-small left"
+                    ><i class="mdi mdi-asterisk"></i
+                  ></span>
+                </p>
+                <p class="help">Please enter your password</p>
+              </div>
+
+              <header/>
+
+              <div class="field grouped">
+                <div class="control">
+                  <button type="submit" class="button blue">Login</button>
+                </div>
+                <div class="control">
+                  <a href="index.html" class="button"> Back </a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Scripts below are for demo only -->
+    <script
+      type="text/javascript"
+      src="js/main.min.js?v=1652870200386"
+    ></script>
+
+    <script>
+      document
+        .getElementById("loginForm")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const formData = new FormData(document.getElementById("loginForm"));
+
+          const response = await fetch("/login", {
+            method: "POST",
+            body: new URLSearchParams(formData),
+          });
+
+          if (response.redirected) {
+            window.location.href = response.url;
+          } else {
+            alert("Login failed");
+          }
+        });
+    </script>
+  </body>
 </html>

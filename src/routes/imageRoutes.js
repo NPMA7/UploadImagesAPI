@@ -7,8 +7,8 @@ const db = require('../config/db'); // Impor konfigurasi database
 // Endpoint lain
 router.post('/upload', upload.single('image'), imageController.uploadImage);
 router.get('/images', imageController.getImages);
-router.get('/image/:id', imageController.getImageById);
-router.delete('/image/:id', imageController.deleteImage); // Tambahkan route delete
+router.get('/images/:id', imageController.getImageById);
+router.delete('/images/:id', imageController.deleteImage); // Tambahkan route delete
 
 // Endpoint untuk memeriksa koneksi database
 router.get('/health-check', async (req, res) => {
