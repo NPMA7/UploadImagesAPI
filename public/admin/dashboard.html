@@ -1,31 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin Dashboard</title>
-</head>
-<body>
-  <h1>Admin Dashboard</h1>
-  <a href="/logout">Logout</a>
-  <a href="/">Home</a>
-  <h2>Uploaded Images</h2>
-  <table id="imageTable" border="1">
-    <thead>
-      <tr>
-        <th>Image</th>
-        <th>Sender</th>
-        <th>Upload Date</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <!-- Data gambar akan dimuat di sini -->
-    </tbody>
-  </table>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      input[type="file"] {
+        margin-top: 10px;
+      }
+      img {
+        max-width: 100px;
+        height: auto;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+      }
+      th,
+      td {
+        padding: 8px 12px;
+        border: 1px solid #ccc;
+      }
+      th {
+        background-color: #f4f4f4;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome Admin Page</h1>
+      <p id="userDisplay">Loading user...</p>
+      <p id="roleDisplay">Loading role...</p>
+      <button type="button" onclick="window.location.href = '/'">
+        Go To Home
+      </button>
 
-  <script src="../js/adminDashboard.js">
-    
-  </script>
-</body>
+      <form id="uploadForm">
+        <h2>Uploaded Images</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Sender Name</th>
+              <th>Upload Date</th>
+              <th id="actionHeader" class="hidden">Action</th>
+            </tr>
+          </thead>
+          <tbody id="imageTableBody">
+            <!-- Gambar akan dimuat di sini -->
+          </tbody>
+        </table>
+      </form>
+    </div>
+    <script src="/src/middleware/display.js"></script>
+  </body>
 </html>

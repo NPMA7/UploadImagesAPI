@@ -1,14 +1,14 @@
 const express = require("express");
 const path = require("path");
-const db = require("../utils/db");
+const pool = require('../config/db');
 const router = express.Router();
 
 // Admin Dashboard
 router.get("/dashboard", (req, res) => {
   if (req.session.user && req.session.user.role === "admin") {
-    db.query("SELECT id, sender_name, upload_date FROM images", (err, results) => {
+    pool.query("SELECT id, sender_name, upload_date FROM images", (err, results) => {
       if (err) throw err;
-      res.sendFile(path.join(__dirname, "../public/admin/", "dashboard.html"));
+      res.sendFile(path.join(__dirname, "../../public/admin/", "dashboard.html"));
     });
   } else {
     res.redirect("/login");

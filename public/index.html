@@ -1,50 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CRUD with Roles</title>
-  </head>
-  <body>
-    <h1>Welcome</h1>
-    <p id="userDisplay">Loading user...</p>
-    <p id="roleDisplay">Loading role...</p>
-    <div id="dashboardButton"></div>
-    <h1>Upload Image</h1>
-    <form id="uploadForm" enctype="multipart/form-data">
-      <input
-        type="file"
-        id="imageFile"
-        name="image"
-        accept="image/*"
-        required
-      />
-      <input
-        type="text"
-        id="senderName"
-        name="senderName"
-        placeholder="Sender Name"
-        required
-      />
-      <button type="submit">Upload</button>
-    </form>
+    <title>Image Upload</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        input[type="file"] {
+            margin-top: 10px;
+        }
+        img {
+            max-width: 100px;
+            height: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th,
+        td {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome</h1>
+        <p id="userDisplay">Loading user...</p>
+        <p id="roleDisplay">Loading role...</p>
+        <div id="dashboardButton"></div>
 
-    <h1>Uploaded Images</h1>
-    <table id="imageTable" border="1">
-      <thead>
-        <tr>
-          <th>Image</th>
-          <th>Sender</th>
-          <th>Upload Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Data gambar akan dimuat di sini -->
-      </tbody>
-    </table>
-
-    <script src="js/index.js">
-      
-    </script>
-  </body>
+        <h1>Upload Image</h1>
+        <form id="uploadForm">
+            <input
+                type="text"
+                id="senderName"
+                placeholder="Enter your name"
+                required
+            /><br />
+            <input
+                type="file"
+                id="image"
+                name="image"
+                accept="image/*"
+                required
+            /><br />
+            <button type="submit">Upload</button>
+        </form>
+        <h2>Uploaded Images</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Image</th>
+                    <th>Sender Name</th>
+                    <th>Upload Date</th>
+                    <th id="actionHeader" class="hidden">Action</th>
+                </tr>
+            </thead>
+            <tbody id="imageTableBody">
+                <!-- Gambar akan dimuat di sini -->
+            </tbody>
+        </table>
+    </div>
+    <script src="/src/middleware/display.js"></script>
+</body>
 </html>
