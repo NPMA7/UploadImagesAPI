@@ -5,11 +5,14 @@ const authRoutes = require('../src/routes/authRoutes');
 const session = require("express-session");
 const express = require('express');
 const path = require('path');
+const cors = require("cors")
 require('dotenv').config();
 
 
 const app = express();
 
+
+app.use(cors())
 // Konfigurasi session
 app.use(
   session({
