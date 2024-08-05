@@ -83,6 +83,7 @@
           const response = await fetch("/login", {
             method: "POST",
             body: new URLSearchParams(formData),
+            credentials: 'same-origin' // Ensure cookies are sent
           });
 
           if (response.redirected) {
