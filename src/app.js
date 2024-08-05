@@ -27,7 +27,6 @@ app.use(session({
   saveUninitialized: false, // Do not create a session until something is stored
   cookie: {
     maxAge: 60 * 60 * 1000, // 1 hour in milliseconds
-    secure: 'production', // Set to true if using HTTPS
     sameSite: 'lax' // Controls when cookies are sent
   }
 }));
