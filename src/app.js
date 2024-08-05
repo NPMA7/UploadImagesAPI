@@ -12,7 +12,7 @@ const app = express();
 app.use(
     session({
       secret: "galalaga",
-      resave: true,
+      resave: false,
       saveUninitialized: true,
     })
   );

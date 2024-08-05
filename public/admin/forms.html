@@ -337,37 +337,30 @@
       // Muat gambar saat halaman dimuat
       viewImages();
 
-      let role = "";
-
       async function fetchData() {
-        const response = await fetch("/admin/data/user/json");
-        if (response.ok) {
-          const { username, role: userRole } = await response.json();
-          document.getElementById("userDisplay").textContent = `${username}`;
-          document.getElementById(
-            "roleDisplay"
-          ).textContent = `Hallo!! ${userRole}`;
-          role = userRole; // Simpan role untuk digunakan di loadImages
-          if (role === "admin") {
-            var dashboardButton = document.createElement("button");
-            dashboardButton.textContent = "Go to Dashboard";
-            dashboardButton.onclick = function () {
-              window.location.href = "/admin/dashboard";
-            };
-            document
-              .getElementById("dashboardButton")
-              .appendChild(dashboardButton);
+        try {
+          const response = await fetch("/admin/data/user/json");
+          if (response.ok) {
+            const { username, role: userRole } = await response.json();
+            document.getElementById("userDisplay").textContent = `${username}`;
+            document.getElementById(
+              "roleDisplay"
+            ).textContent = `Hello, ${userRole}!`;
+            if (userRole === "admin") {
+              console.log("User is an admin");
+            }else {
+              console.log("User is an visitor");
+            }
           } else {
-            document.getElementById("dashboardButton").style.display = "none";
+            document.getElementById("roleDisplay").textContent = `Your Visitor`;
+            document.getElementById("userDisplay").textContent = `Not login`;
           }
-          loadImages(); // Muat gambar setelah mendapatkan data
-        } else {
-          document.getElementById("roleDisplay").textContent = `Your Visitor`;
-          document.getElementById("userDisplay").textContent = ``;
+        } catch (error) {
+          console.error("Error fetching user data:", error);
         }
       }
 
-      fetchData();
+      fetchData(); 
     </script>
   </body>
 </html>

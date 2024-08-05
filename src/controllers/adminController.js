@@ -1,7 +1,7 @@
 const pool = require('../config/db');
 
 
-// Get User Data
+// Controller logic to send user data
 exports.data = (req, res) => {
   if (req.session.user) {
     res.json({
@@ -12,6 +12,7 @@ exports.data = (req, res) => {
     res.sendStatus(401); // Unauthorized
   }
 };
+
 // Admin Dashboard
 exports.dashboard = (req, res) => {
   if (req.session.user && req.session.user.role === "admin") {
