@@ -12,7 +12,7 @@ const app = express();
 app.use(
     session({
       secret: "galalaga",
-      resave: false,
+      resave: true,
       saveUninitialized: true,
     })
   );
@@ -20,7 +20,6 @@ app.use(
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../public'))); // Menyajikan file statis dari folder public
-app.use('/src', express.static(path.join(__dirname, '../src'))); // Menyajikan folder 'src' sebagai direktori statis
 
 app.use('/', authRoutes); 
 app.use('/api', imageRoutes);

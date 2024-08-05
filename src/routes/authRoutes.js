@@ -4,6 +4,13 @@ const authController = require('../controllers/authController');
 
 const router = express.Router();
 
+// Visitor Dashboard
+router.get('/dashboard', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../public', 'dashboard.html'));
+});
+
+router.post('/login', authController.login);
+
 // Login
 router.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, '../../public', 'login.html'));

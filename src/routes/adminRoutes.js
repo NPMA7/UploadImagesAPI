@@ -4,6 +4,11 @@ const adminController = require('../controllers/adminController');
 
 const router = express.Router();
 
+// Get User Data
+router.get('/data/user/json', adminController.data);
+// Get User Data
+router.post('/data/user/json', adminController.data);
+
 // Admin Dashboard
 router.get('/dashboard', (req, res) => {
   if (req.session.user && req.session.user.role === 'admin') {
@@ -29,9 +34,5 @@ router.get('/tables', (req, res) => {
   }
 });
 
-// Get User Data
-router.get('/data/user/json', adminController.data);
-// Get User Data
-router.post('/data/user/json', adminController.data);
 
 module.exports = router;

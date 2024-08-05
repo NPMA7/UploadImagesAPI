@@ -4,13 +4,13 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Login - Admin One Tailwind CSS Admin Dashboard</title>
+    <title>Login</title>
     <link
       rel="stylesheet"
       href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css"
     />
     <!-- Tailwind is included -->
-    <link rel="stylesheet" href="css/main.css?v=1652870200386" />
+    <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
     <div id="app">
@@ -24,7 +24,6 @@
           </header>
           <div class="card-content">
             <form method="get" id="loginForm">
-
               <div class="field spaced">
                 <label class="label">Login</label>
                 <div class="control icons-left">
@@ -59,9 +58,6 @@
                 </p>
                 <p class="help">Please enter your password</p>
               </div>
-
-              <header/>
-
               <div class="field grouped">
                 <div class="control">
                   <button type="submit" class="button blue">Login</button>
@@ -76,12 +72,6 @@
       </section>
     </div>
 
-    <!-- Scripts below are for demo only -->
-    <script
-      type="text/javascript"
-      src="js/main.min.js?v=1652870200386"
-    ></script>
-
     <script>
       document
         .getElementById("loginForm")
@@ -95,6 +85,7 @@
           });
 
           if (response.redirected) {
+            alert("login successful");
             window.location.href = response.url;
           } else {
             alert("Login failed");
