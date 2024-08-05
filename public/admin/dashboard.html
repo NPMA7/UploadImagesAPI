@@ -312,8 +312,7 @@ button:hover {
             tr.appendChild(tdImg);
             tr.appendChild(tdName);
             tr.appendChild(tdDate);
-    
-            if (role === "admin") {
+  
               const tdAction = document.createElement("td");
               const deleteButton = document.createElement("button");
               deleteButton.className = "button small red modal-trigger";
@@ -354,7 +353,7 @@ button:hover {
     
               tdAction.appendChild(deleteButton);
               tr.appendChild(tdAction);
-            }
+            
             imageTableBody.appendChild(tr);
           });
         })

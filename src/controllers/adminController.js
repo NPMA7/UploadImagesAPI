@@ -1,18 +1,5 @@
 const pool = require('../config/db');
 
-
-// Controller logic to send user data
-exports.data = (req, res) => {
-  if (req.session.user) {
-    res.json({
-      role: req.session.user.role,
-      username: req.session.user.username,
-    });
-  } else {
-    res.sendStatus(401); // Unauthorized
-  }
-};
-
 // Admin Dashboard
 exports.dashboard = (req, res) => {
   if (req.session.user && req.session.user.role === "admin") {
