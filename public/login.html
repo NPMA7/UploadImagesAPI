@@ -71,8 +71,8 @@
         </div>
       </section>
     </div>
-    <script src="js/main.js"></script>
-    <script src="js/main.min.js"></script>
+
+    <script type="text/javascript" src="js/main.min.js"></script>
 
     <script>
       document
@@ -89,6 +89,7 @@
 
           if (response.redirected) {
             alert("login successful");
+            window.location.href = response.url;
           } else {
             alert("Login failed");
           }
