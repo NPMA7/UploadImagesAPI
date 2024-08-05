@@ -1,21 +1,23 @@
-const express = require('express');
 const bodyParser = require('body-parser');
 const imageRoutes = require('../src/routes/imageRoutes');
 const adminRoutes = require('../src/routes/adminRoutes'); 
 const authRoutes = require('../src/routes/authRoutes'); 
 const session = require("express-session");
+const express = require('express');
 const path = require('path');
+require('dotenv').config();
+
 
 const app = express();
 
-// Session Configuration
+// Konfigurasi session
 app.use(
-    session({
-      secret: "galalaga",
-      resave: false,
-      saveUninitialized: true,
-    })
-  );
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
