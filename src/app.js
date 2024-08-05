@@ -1,7 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const imageRoutes = require('../src/routes/imageRoutes');
-const authRoutes = require('../src/routes/authRoutes'); // Mengimpor authRoutes
+const adminRoutes = require('../src/routes/adminRoutes'); 
+const authRoutes = require('../src/routes/authRoutes'); 
 const session = require("express-session");
 const path = require('path');
 
@@ -21,7 +22,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../public'))); // Menyajikan file statis dari folder public
 app.use('/src', express.static(path.join(__dirname, '../src'))); // Menyajikan folder 'src' sebagai direktori statis
 
+app.use('/', authRoutes); 
 app.use('/api', imageRoutes);
-app.use('/', authRoutes); // Menggunakan authRoutes
-app.use('/admin', require('../src/controllers/adminController'));
+app.use('/admin', adminRoutes);
 module.exports = app;

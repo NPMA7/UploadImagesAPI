@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Dashboard - Admin </title>
+    <title>Dashboard - Admin</title>
 
     <!-- Tailwind is included -->
     <link rel="stylesheet" href="../css/main.css" />
@@ -14,71 +14,65 @@
       href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css"
     />
     <style>
-            button{
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5em 1em;
-  font-size: 1rem;
-  border: none;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+      button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5em 1em;
+        font-size: 1rem;
+        border: none;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
 
-  font-size: 0.875rem;
-  padding: 0.25em 0.75em;
+        font-size: 0.875rem;
+        padding: 0.25em 0.75em;
 
+        background-color: #e74c3c;
+        color: #fff;
+      }
 
+      button:hover {
+        background-color: #c0392b;
+      }
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
 
-  background-color: #e74c3c;
-  color: #fff;
-}
+      .modal-content {
+        background-color: #fefefe;
+        margin: 15% auto;
+        padding: 20px;
+        border: 1px solid #888;
+        width: 80%;
+        max-width: 500px;
+      }
 
-button:hover {
-  background-color: #c0392b;
-}
-.modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-}
+      .modal-footer {
+        margin-top: 3em;
+        display: flex;
+        justify-content: space-between;
+      }
 
-.modal-content {
-  background-color: #fefefe;
-  margin: 15% auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
-  max-width: 500px;
-}
+      .button.red {
+        background-color: #e74c3c;
+        color: white;
+      }
 
-.modal-footer {
-  margin-top: 3em;
-  display: flex; 
-  justify-content: space-between;
-}
-
-.button.red {
-  background-color: #e74c3c;
-  color: white;
-}
-
-.button.red:hover {
-  background-color: #c0392b;
-}
-
-
-    
+      .button.red:hover {
+        background-color: #c0392b;
+      }
     </style>
   </head>
   <body>
-
     <div id="app">
       <nav id="navbar-main" class="navbar is-fixed-top">
         <div class="navbar-brand">
@@ -114,126 +108,117 @@ button:hover {
                     class="rounded-full"
                   />
                 </div>
-          <div class="is-user-name" id="userDisplay">Loading user...</div>
+                <div class="is-user-name" id="userDisplay">Loading user...</div>
               </a>
             </div>
-    
-            <a title="Log out" href="/logout" class="navbar-item desktop-icon-only">
+
+            <a
+              title="Log out"
+              href="/logout"
+              class="navbar-item desktop-icon-only"
+            >
               <span class="icon"><i class="mdi mdi-logout"></i></span>
               <span>Log out</span>
             </a>
           </div>
         </div>
       </nav>
-    
-    <aside class="aside is-placed-left is-expanded">
-      <div class="aside-tools">
-        <div>
-          <div id="roleDisplay">Loading role...</div>
+
+      <aside class="aside is-placed-left is-expanded">
+        <div class="aside-tools">
+          <div>
+            <div id="roleDisplay">Loading role...</div>
+          </div>
         </div>
-      </div>
-      <div class="menu is-menu-main">
-        <p class="menu-label">General</p>
-        <ul class="menu-list">
-          <li class="--set-active-index-html">
-            <a href="/admin/dashboard">
-              <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
-              <span class="menu-item-label">Dashboard</span>
-            </a>
-          </li>
-        </ul>
-        <ul class="menu-list">
-          <li class="active">
-            <a href="/admin/tables">
-              <span class="icon"><i class="mdi mdi-table"></i></span>
-              <span class="menu-item-label">Tables</span>
-            </a>
-          </li>
-          <li class="--set-active-forms-html">
-            <a href="/admin/forms">
-              <span class="icon"><i class="mdi mdi-square-edit-outline"></i></span>
-              <span class="menu-item-label">Forms</span>
-            </a>
-          </li>
-          <li class="--set-active-profile-html">
-            <a href="profile.html">
-              <span class="icon"><i class="mdi mdi-account-circle"></i></span>
-              <span class="menu-item-label">Profile</span>
-            </a>
-          </li>
-          <li>
-            <a href="/login">
-              <span class="icon"><i class="mdi mdi-lock"></i></span>
-              <span class="menu-item-label">Login</span>
-            </a>
-          </li>
-         
-        </ul>
-        <p class="menu-label">About</p>
-        <ul class="menu-list">
-          <li>
-            <a href="https://github.com/npma7" class="has-icon">
-              <span class="icon"><i class="mdi mdi-github-circle"></i></span>
-              <span class="menu-item-label">GitHub</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </aside>
-    
-    <section class="is-title-bar">
-      <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
-        <ul>
-          <li>Admin</li>
-          <li>Tables</li>
-        </ul>
-      </div>
-    </section>
-  
-    <section class="is-hero-bar">
-      <div class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0">
-        <h1 class="title">
-          Responsive Tables
-        </h1>
-      </div>
-    </section>
-    <section class="section main-section">
-      <div class="card mb-6">
-        <header class="card-header">
-          <p class="card-header-title">
-            <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
-            Clients
-          </p>
-      
+        <div class="menu is-menu-main">
+          <p class="menu-label">General</p>
+          <ul class="menu-list">
+            <li class="--set-active-index-html">
+              <a href="/admin/dashboard">
+                <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
+                <span class="menu-item-label">Dashboard</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="menu-list">
+            <li class="active">
+              <a href="/admin/tables">
+                <span class="icon"><i class="mdi mdi-table"></i></span>
+                <span class="menu-item-label">Tables</span>
+              </a>
+            </li>
+            <li>
+              <a href="/login">
+                <span class="icon"><i class="mdi mdi-lock"></i></span>
+                <span class="menu-item-label">Login</span>
+              </a>
+            </li>
+          </ul>
+          <p class="menu-label">About</p>
+          <ul class="menu-list">
+            <li>
+              <a href="https://github.com/npma7" class="has-icon">
+                <span class="icon"><i class="mdi mdi-github-circle"></i></span>
+                <span class="menu-item-label">GitHub</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+      <section class="is-title-bar">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0"
+        >
+          <ul>
+            <li>Admin</li>
+            <li>Tables</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="is-hero-bar">
+        <div
+          class="flex flex-col md:flex-row items-center justify-between space-y-6 md:space-y-0"
+        >
+          <h1 class="title">Responsive Tables</h1>
+        </div>
+      </section>
+      <section class="section main-section">
+        <div class="card mb-6">
+          <header class="card-header">
+            <p class="card-header-title">
+              <span class="icon"><i class="mdi mdi-account-multiple"></i></span>
+              Clients
+            </p>
           </header>
           <div class="card-content">
             <form id="uploadForm">
-            <table>
-              <thead>
-                <tr>
-                  <th>Name</th>
-                  <th>Upload Date</th>
-                  <th>Image</th>
-                  <th>Action</th>
-                </tr>
-              </thead>
-              
-              <tbody id="imageTableBody">
-              </tbody>
-              <div id="delete-modal" class="modal">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Upload Date</th>
+                    <th>Image</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+
+                <tbody id="imageTableBody"></tbody>
+                <div id="delete-modal" class="modal">
                   <div class="modal-content">
                     <h4>Confirm Deletion</h4>
                     <p>Are you sure you want to delete this image?</p>
                     <div class="modal-footer">
                       <button id="cancel-delete" class="button">Cancel</button>
-                    <button id="confirm-delete" class="button red">Delete</button>
+                      <button id="confirm-delete" class="button red">
+                        Delete
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-                
-            
-            </table>
-          </form>
+              </table>
+            </form>
             <div class="table-pagination">
               <div class="flex items-center justify-between">
                 <div class="buttons">
@@ -258,8 +243,167 @@ button:hover {
         </div>
       </footer>
     </div>
-    <script type="text/javascript" src="../js/main.min.js"></script>
 
-    <script src="/src/middleware/display.js"></script>
+    <script>
+      document
+        .getElementById("uploadForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const formData = new FormData();
+          formData.append(
+            "sender_name",
+            document.getElementById("senderName").value
+          );
+          formData.append("image", document.getElementById("image").files[0]);
+
+          fetch("/api/upload", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => {
+              if (response.ok) {
+                // Tampilkan modal setelah upload berhasil
+                const modal = document.getElementById("upload-success-modal");
+                const closeModalButton = document.getElementById(
+                  "close-upload-success-modal"
+                );
+
+                modal.style.display = "block";
+
+                closeModalButton.onclick = () => {
+                  modal.style.display = "none";
+                };
+
+                window.onclick = (event) => {
+                  if (event.target == modal) {
+                    modal.style.display = "none";
+                  }
+                };
+
+                // Kosongkan input form setelah berhasil upload
+                document.getElementById("senderName").value = "";
+                document.getElementById("image").value = "";
+                loadImages(); // Muat ulang gambar setelah unggahan berhasil
+                viewImages(); // Muat ulang gambar setelah unggahan berhasil
+              } else {
+                alert("Failed to upload image");
+              }
+            })
+            .catch((error) => console.error("Error:", error));
+        });
+
+      function loadImages() {
+        fetch("/api/images")
+          .then((response) => response.json())
+          .then((images) => {
+            const imageTableBody = document.getElementById("imageTableBody");
+            imageTableBody.innerHTML = ""; // Kosongkan tabel
+            images.forEach((image) => {
+              const tr = document.createElement("tr");
+
+              const tdImg = document.createElement("td");
+              const img = document.createElement("img");
+              img.src = `/api/images/${image.id}`;
+              img.alt = image.sender_name;
+              img.style.width = "200px";
+              img.style.height = "100px";
+              tdImg.appendChild(img);
+
+              const tdName = document.createElement("td");
+              tdName.textContent = image.sender_name;
+
+              const tdDate = document.createElement("td");
+              tdDate.textContent = new Date(image.upload_date).toLocaleString();
+              tr.appendChild(tdImg);
+              tr.appendChild(tdName);
+              tr.appendChild(tdDate);
+
+              if (role === "admin") {
+                const tdAction = document.createElement("td");
+                const deleteButton = document.createElement("button");
+                deleteButton.className = "button small red modal-trigger";
+                deleteButton.setAttribute("data-target", "delete-modal");
+                deleteButton.type = "button";
+
+                const iconSpan = document.createElement("span");
+                iconSpan.className = "icon";
+                const icon = document.createElement("i");
+                icon.className = "mdi mdi-trash-can";
+                iconSpan.appendChild(icon);
+
+                deleteButton.appendChild(iconSpan);
+
+                deleteButton.onclick = () => {
+                  const modal = document.getElementById("delete-modal");
+                  const confirmButton =
+                    document.getElementById("confirm-delete");
+                  const cancelButton = document.getElementById("cancel-delete");
+
+                  modal.style.display = "block";
+
+                  confirmButton.onclick = async () => {
+                    await fetch(`/api/images/${image.id}`, {
+                      method: "DELETE",
+                    });
+                    modal.style.display = "none";
+                    loadImages(); // Muat ulang gambar setelah menghapus
+                  };
+
+                  cancelButton.onclick = () => {
+                    modal.style.display = "none";
+                  };
+
+                  window.onclick = (event) => {
+                    if (event.target == modal) {
+                      modal.style.display = "none";
+                    }
+                  };
+                };
+
+                tdAction.appendChild(deleteButton);
+                tr.appendChild(tdAction);
+              }
+              imageTableBody.appendChild(tr);
+            });
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      // Muat gambar saat halaman dimuat
+      loadImages();
+
+      let role = "";
+
+      async function fetchData() {
+        const response = await fetch("/admin/data/user/json");
+        if (response.ok) {
+          const { username, role: userRole } = await response.json();
+          document.getElementById("userDisplay").textContent = `${username}`;
+          document.getElementById(
+            "roleDisplay"
+          ).textContent = `Hallo!! ${userRole}`;
+          role = userRole; // Simpan role untuk digunakan di loadImages
+          if (role === "admin") {
+            var dashboardButton = document.createElement("button");
+            dashboardButton.textContent = "Go to Dashboard";
+            dashboardButton.onclick = function () {
+              window.location.href = "/admin/dashboard";
+            };
+            document
+              .getElementById("dashboardButton")
+              .appendChild(dashboardButton);
+          } else {
+            document.getElementById("dashboardButton").style.display = "none";
+          }
+          loadImages(); // Muat gambar setelah mendapatkan data
+        } else {
+          document.getElementById("roleDisplay").textContent = `Your Visitor`;
+          document.getElementById("userDisplay").textContent = ``;
+        }
+      }
+
+      fetchData();
+    </script>
   </body>
 </html>

@@ -8,6 +8,7 @@
 
     <!-- Tailwind is included -->
     <link rel="stylesheet" href="../css/main.css" />
+    
     <!-- Icons below are for demo only. Feel free to use any icon pack. Docs: https://bulma.io/documentation/elements/icon/ -->
     <link
       rel="stylesheet"
@@ -15,9 +16,9 @@
     />
 
     <style>
-        table {
-            background-color: rgb(255, 0, 0);
-        }
+      table {
+        background-color: rgb(116, 116, 116);
+      }
       .modal {
         display: none;
         position: fixed;
@@ -42,7 +43,6 @@
       .modal-footer {
         display: flex;
         justify-content: flex-end;
-        
       }
     </style>
   </head>
@@ -110,23 +110,17 @@
             <li class="--set-active-index-html">
               <a href="/admin/dashboard">
                 <span class="icon"><i class="mdi mdi-desktop-mac"></i></span>
-                <span class="menu-item-label">Dashboard</span>
+                <span class="menu-item-label">Admin Dashboard</span>
               </a>
             </li>
           </ul>
           <ul class="menu-list">
-                   <li class="active">
+            <li class="active">
               <a href="/">
                 <span class="icon"
                   ><i class="mdi mdi-square-edit-outline"></i
                 ></span>
                 <span class="menu-item-label">Forms</span>
-              </a>
-            </li>
-            <li class="--set-active-profile-html">
-              <a href="profile.html">
-                <span class="icon"><i class="mdi mdi-account-circle"></i></span>
-                <span class="menu-item-label">Profile</span>
               </a>
             </li>
             <li>
@@ -139,10 +133,7 @@
           <p class="menu-label">About</p>
           <ul class="menu-list">
             <li>
-              <a
-                href="https://github.com/npma7"
-                class="has-icon"
-              >
+              <a href="https://github.com/npma7" class="has-icon">
                 <span class="icon"><i class="mdi mdi-github-circle"></i></span>
                 <span class="menu-item-label">GitHub</span>
               </a>
@@ -171,7 +162,7 @@
       </section>
 
       <section class="section main-section">
-        <div class="card ">
+        <div class="card">
           <header class="card-header">
             <p class="card-header-title">
               <span class="icon"><i class="mdi mdi-ballot"></i></span>
@@ -236,16 +227,16 @@
       </section>
       <table>
         <thead>
-            <tr>
-                <th>Image Uploaded</th>
-                <th>Sender Name</th>
-                <th>Upload Date</th>
-            </tr>
+          <tr>
+            <th>Image Uploaded</th>
+            <th>Sender Name</th>
+            <th>Upload Date</th>
+          </tr>
         </thead>
         <tbody id="imageTableBodyView">
-            <!-- Gambar akan dimuat di sini -->
+          <!-- Gambar akan dimuat di sini -->
         </tbody>
-    </table>
+      </table>
       <footer class="footer">
         <div
           class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0"
@@ -256,8 +247,127 @@
         </div>
       </footer>
     </div>
-    <script type="text/javascript" src="../js/main.min.js"></script>
 
-    <script src="/src/middleware/display.js"></script>
+    <script>
+      document
+        .getElementById("uploadForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const formData = new FormData();
+          formData.append(
+            "sender_name",
+            document.getElementById("senderName").value
+          );
+          formData.append("image", document.getElementById("image").files[0]);
+
+          fetch("/api/upload", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => {
+              if (response.ok) {
+                // Tampilkan modal setelah upload berhasil
+                const modal = document.getElementById("upload-success-modal");
+                const closeModalButton = document.getElementById(
+                  "close-upload-success-modal"
+                );
+
+                modal.style.display = "block";
+
+                closeModalButton.onclick = () => {
+                  modal.style.display = "none";
+                };
+
+                window.onclick = (event) => {
+                  if (event.target == modal) {
+                    modal.style.display = "none";
+                  }
+                };
+
+                // Kosongkan input form setelah berhasil upload
+                document.getElementById("senderName").value = "";
+                document.getElementById("image").value = "";
+                loadImages(); // Muat ulang gambar setelah unggahan berhasil
+                viewImages(); // Muat ulang gambar setelah unggahan berhasil
+              } else {
+                alert("Failed to upload image");
+              }
+            })
+            .catch((error) => console.error("Error:", error));
+        });
+
+      function viewImages() {
+        fetch("/api/images")
+          .then((response) => response.json())
+          .then((images) => {
+            if (images.length > 0) {
+              const latestImage = images[0]; // Mengambil gambar terbaru (diasumsikan gambar pertama dalam array adalah yang terbaru)
+              const imageTableBody =
+                document.getElementById("imageTableBodyView");
+              imageTableBody.innerHTML = ""; // Kosongkan tabel
+
+              const tr = document.createElement("tr");
+
+              const tdImg = document.createElement("td");
+              const img = document.createElement("img");
+              img.src = `/api/images/${latestImage.id}`;
+              img.alt = latestImage.sender_name;
+              img.style.width = "200px";
+              img.style.height = "100px";
+              tdImg.appendChild(img);
+
+              const tdName = document.createElement("td");
+              tdName.textContent = latestImage.sender_name;
+
+              const tdDate = document.createElement("td");
+              tdDate.textContent = new Date(
+                latestImage.upload_date
+              ).toLocaleString();
+              tr.appendChild(tdImg);
+              tr.appendChild(tdName);
+              tr.appendChild(tdDate);
+
+              imageTableBody.appendChild(tr);
+            }
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+
+      // Muat gambar saat halaman dimuat
+      viewImages();
+
+      let role = "";
+
+      async function fetchData() {
+        const response = await fetch("/admin/data/user/json");
+        if (response.ok) {
+          const { username, role: userRole } = await response.json();
+          document.getElementById("userDisplay").textContent = `${username}`;
+          document.getElementById(
+            "roleDisplay"
+          ).textContent = `Hallo!! ${userRole}`;
+          role = userRole; // Simpan role untuk digunakan di loadImages
+          if (role === "admin") {
+            var dashboardButton = document.createElement("button");
+            dashboardButton.textContent = "Go to Dashboard";
+            dashboardButton.onclick = function () {
+              window.location.href = "/admin/dashboard";
+            };
+            document
+              .getElementById("dashboardButton")
+              .appendChild(dashboardButton);
+          } else {
+            document.getElementById("dashboardButton").style.display = "none";
+          }
+          loadImages(); // Muat gambar setelah mendapatkan data
+        } else {
+          document.getElementById("roleDisplay").textContent = `Your Visitor`;
+          document.getElementById("userDisplay").textContent = ``;
+        }
+      }
+
+      fetchData();
+    </script>
   </body>
 </html>
