@@ -13,12 +13,14 @@ const app = express();
 
 
 app.use(cors())
-// Konfigurasi session
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
     resave: false,
     saveUninitialized: true,
+    cookie: {
+      maxAge: 60 * 60 * 1000 // 1 jam dalam milidetik
+    }
   })
 );
 
